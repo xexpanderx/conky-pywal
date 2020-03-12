@@ -1,0 +1,134 @@
+require 'cairo'
+
+function hex2rgb(hex)
+	hex = hex:gsub("#","")
+	return (tonumber("0x"..hex:sub(1,2))/255), (tonumber("0x"..hex:sub(3,4))/255), tonumber(("0x"..hex:sub(5,6))/255)
+end
+
+-- HTML colors
+color0="#1d1e36"
+color1="#673790"
+color2="#675799"
+color3="#6A6ABE"
+color4="#995B95"
+color5="#B54C99"
+color6="#718E9D"
+color7="#cbc3c8"
+color8="#8e888c"
+color9="#673790"
+color10="#675799"
+color11="#6A6ABE"
+color12="#995B95"
+color13="#B54C99"
+color14="#718E9D"
+color15="#cbc3c8"
+color66="#1d1e36"
+t0= 1
+t0_border= 0.3
+r0, g0, b0 = hex2rgb(color0)
+t5= 1
+r5, g5, b5 = hex2rgb(color5)
+t6= 1
+r6, g6, b6 = hex2rgb(color6)
+t8= 1
+r8, g8, b8 = hex2rgb(color8)
+
+pathname="Home"
+pathway="/home"
+
+function fix_text(text)
+	if string.len(text) == 1 then
+		new_text = "0" .. text .. "%"
+		return new_text
+	else
+		new_text = text .. "%"
+		return new_text
+	end
+end
+
+function draw_circle_background(cr, w, h)
+	cairo_set_source_rgba(cr, r0, g0, b0, t0)
+	cairo_arc(cr,w/2,h/2,52,0*math.pi/180,360*math.pi/180)
+    cairo_fill(cr)
+end
+
+function draw_circle_background_border(cr, w, h)
+	cairo_set_source_rgba(cr, r0, g0, b0, t0_border)
+	cairo_set_line_width(cr, 2)
+	cairo_arc(cr,w/2,h/2,52,0*math.pi/180,360*math.pi/180)
+    cairo_stroke(cr)
+end
+
+function draw_ssd(cr, w, h, pathname, pathway)
+	local c1=42
+	local c2_x=(w-c1)/2
+	local c2_y=(h-c1)/2
+	local c3_x=w/2
+	local c3_y=h/2
+	cairo_set_source_rgba(cr, r5, g5, b5, t5)
+	cairo_set_line_width(cr, 2)
+	cairo_arc(cr,c2_x,c2_y-5,10,180*math.pi/180,270*math.pi/180)
+	cairo_rel_line_to(cr,c1,0)
+	cairo_arc(cr,c2_x+c1,c2_y-5,10,270*math.pi/180,360*math.pi/180)
+	cairo_rel_line_to(cr,0,52)
+	cairo_arc(cr,c2_x+c1,c2_y-5+52,10,0*math.pi/180,90*math.pi/180)
+	cairo_rel_line_to(cr,-7,0)
+	cairo_rel_line_to(cr,0,-10)
+	cairo_rel_line_to(cr,-28,0)
+	cairo_rel_line_to(cr,0,10)
+	cairo_rel_line_to(cr,-7,0)
+	cairo_arc(cr,c2_x,c2_y+47,10,90*math.pi/180,180*math.pi/180)
+	cairo_close_path(cr)
+	cairo_stroke(cr)
+	--Holes
+	cairo_arc(cr,c2_x-1,c2_y+46,3,0*math.pi/180,360*math.pi/180)
+	cairo_arc(cr,c2_x+43,c2_y+46,3,0*math.pi/180,360*math.pi/180)
+	cairo_fill(cr)
+	cairo_arc(cr,c2_x-1,c2_y-4,3,0*math.pi/180,360*math.pi/180)
+	cairo_arc(cr,c2_x+43,c2_y-4,3,0*math.pi/180,360*math.pi/180)
+	cairo_fill(cr)
+	cairo_rectangle (cr, c2_x-1, c2_y+10, 44, 22);
+	cairo_stroke(cr)
+	--Pathname
+	cairo_set_source_rgba(cr, r8, g8, b8, t8)
+	ct = cairo_text_extents_t:create()
+	cairo_text_extents(cr,pathname,ct)
+    cairo_move_to(cr,w/2-ct.width/2,h/2+ct.height/2)
+    cairo_show_text(cr,pathname)
+    --Pathway indicator
+    cairo_set_source_rgba(cr, r5, g5, b5, t5)
+	cairo_set_line_width(cr, 1)
+	for i=0, 3 do
+		cairo_rectangle (cr,c2_x+10+6*i,c2_y+50, 4, 7);
+		cairo_stroke(cr)
+    end
+    fs_used = math.floor(4*tonumber(conky_parse("${fs_used_perc " .. pathway .. "}"))/100)
+    for i=0, fs_used do
+		cairo_rectangle (cr,c2_x+10+6*i,c2_y+50, 4, 7);
+		cairo_fill(cr)
+    end
+	
+end
+
+function draw_widgets(cr)
+	local w,h=conky_window.width,conky_window.height
+	cairo_select_font_face (cr, "Dejavu Sans", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL)
+	cairo_set_font_size(cr, 10)
+	
+	--Draw background
+	draw_circle_background(cr, w, h)
+	draw_circle_background_border(cr, w, h)
+	--Draw ssd
+	draw_ssd(cr, w, h, pathname, pathway)
+	
+end
+
+function conky_start_widgets()
+
+	if conky_window==nil then return end
+	local cs=cairo_xlib_surface_create(conky_window.display,conky_window.drawable,conky_window.visual, conky_window.width,conky_window.height)
+	local cr=cairo_create(cs)	
+	draw_widgets(cr)
+	cairo_surface_destroy(cs)
+	cairo_destroy(cr)
+end
