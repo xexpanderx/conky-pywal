@@ -1,6 +1,6 @@
 <b>conky-pywal</b>
 
-![alt tag](https://raw.githubusercontent.com/xexpanderx/conky-pywal/master/screenshot.png?token=ACMVF4EBDQVYG3JWNBOBTWK6NLA2W)
+![alt tag](https://raw.githubusercontent.com/xexpanderx/conky-pywal/master/screenshot.png)
 
 <b>Dependencies</b>
 
