@@ -9,6 +9,8 @@ A conky showing:
 - CPU Temperature
 - GPU Hz
 
+It changes colors with pywal!
+
 <b>Dependencies</b>
 
 - moreutils
