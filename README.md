@@ -2,6 +2,13 @@
 
 ![alt tag](https://raw.githubusercontent.com/xexpanderx/conky-pywal/master/screenshot.png)
 
+A conky showing:
+- Diskspace
+- RAM Usage
+- CPU Usage
+- CPU Temperature
+- GPU Hz
+
 <b>Dependencies</b>
 
 - moreutils
