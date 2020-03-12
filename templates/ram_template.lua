@@ -6,32 +6,16 @@ function hex2rgb(hex)
 end
 
 -- HTML colors
-color0="#11273f"
-color1="#67689C"
-color2="#9A7290"
-color3="#CC798B"
-color4="#228DB7"
-color5="#638CB1"
-color6="#2F9EC7"
-color7="#9ccbdd"
-color8="#6d8e9a"
-color9="#67689C"
-color10="#9A7290"
-color11="#CC798B"
-color12="#228DB7"
-color13="#638CB1"
-color14="#2F9EC7"
-color15="#9ccbdd"
-color66="#11273f"
+COLORFIELD
 t0= 1
 t0_border= 0.3
 r0, g0, b0 = hex2rgb(color0)
+t1= 1
+r1, g1, b1 = hex2rgb(color3)
+t2= 1
+r2, g2, b2 = hex2rgb(color7)
 t3= 1
-r3, g3, b3 = hex2rgb(color3)
-t4= 1
-r4, g4, b4 = hex2rgb(color4)
-t7= 1
-r7, g7, b7 = hex2rgb(color7)
+r3, g3, b3 = hex2rgb(color8)
 
 function fix_text(text)
 	if string.len(text) == 1 then
@@ -57,7 +41,7 @@ function draw_circle_background_border(cr, w, h)
 end
 
 function draw_ram(cr, w, h)
-	cairo_set_source_rgba(cr, r3, g3, b3, t3)
+	cairo_set_source_rgba(cr, r1, g1, b1, t1)
 	local c1=72
 	local c2_x=(w-c1)/2
 	local c2_y=(h-c1)/2
@@ -123,7 +107,7 @@ function draw_ram(cr, w, h)
     cairo_rel_line_to(cr,72,0)
     cairo_stroke(cr)
     --Indicator used line
-    cairo_set_source_rgba(cr, r4, g4, b4, t4)
+    cairo_set_source_rgba(cr, r2, g2, b2, t2)
     cairo_set_line_width(cr, 4)
     mem_used = math.floor(72*tonumber(conky_parse("${memperc}"))/100)
     cairo_move_to(cr,c2_x,c2_y+58+fix)

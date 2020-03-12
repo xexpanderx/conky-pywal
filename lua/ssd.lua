@@ -6,35 +6,35 @@ function hex2rgb(hex)
 end
 
 -- HTML colors
-color0="#11273f"
-color1="#67689C"
-color2="#9A7290"
-color3="#CC798B"
-color4="#228DB7"
-color5="#638CB1"
-color6="#2F9EC7"
-color7="#9ccbdd"
-color8="#6d8e9a"
-color9="#67689C"
-color10="#9A7290"
-color11="#CC798B"
-color12="#228DB7"
-color13="#638CB1"
-color14="#2F9EC7"
-color15="#9ccbdd"
-color66="#11273f"
+color0="#33304b"
+color1="#D76C84"
+color2="#4CA293"
+color3="#6AA28E"
+color4="#9EA48A"
+color5="#E2A188"
+color6="#9CCB96"
+color7="#e7dbc0"
+color8="#a19986"
+color9="#D76C84"
+color10="#4CA293"
+color11="#6AA28E"
+color12="#9EA48A"
+color13="#E2A188"
+color14="#9CCB96"
+color15="#e7dbc0"
+color66="#33304b"
 t0= 1
 t0_border= 0.3
 r0, g0, b0 = hex2rgb(color0)
+t1= 1
+r1, g1, b1 = hex2rgb(color1)
 t2= 1
-r2, g2, b2 = hex2rgb(color2)
-t4= 1
-r4, g4, b4 = hex2rgb(color4)
-t8= 1
-r8, g8, b8 = hex2rgb(color8)
+r2, g2, b2 = hex2rgb(color7)
+t3= 1
+r3, g3, b3 = hex2rgb(color8)
 
-pathname="Root"
-pathway="/"
+pathname="Home"
+pathway="/home"
 
 function fix_text(text)
 	if string.len(text) == 1 then
@@ -65,7 +65,7 @@ function draw_ssd(cr, w, h, pathname, pathway)
 	local c2_y=(h-c1)/2
 	local c3_x=w/2
 	local c3_y=h/2
-	cairo_set_source_rgba(cr, r2, g2, b2, t2)
+	cairo_set_source_rgba(cr, r1, g1, b1, t1)
 	cairo_set_line_width(cr, 2)
 	cairo_arc(cr,c2_x,c2_y-5,10,180*math.pi/180,270*math.pi/180)
 	cairo_rel_line_to(cr,c1,0)
@@ -90,19 +90,19 @@ function draw_ssd(cr, w, h, pathname, pathway)
 	cairo_rectangle (cr, c2_x-1, c2_y+10, 44, 22);
 	cairo_stroke(cr)
 	--Pathname
-	cairo_set_source_rgba(cr, r8, g8, b8, t8)
+	cairo_set_source_rgba(cr, r3, g3, b3, t3)
 	ct = cairo_text_extents_t:create()
 	cairo_text_extents(cr,pathname,ct)
     cairo_move_to(cr,w/2-ct.width/2,h/2+ct.height/2)
     cairo_show_text(cr,pathname)
     --Pathway indicator
-    cairo_set_source_rgba(cr, r2, g2, b2, t2)
+    cairo_set_source_rgba(cr, r1, g1, b1, t1)
 	cairo_set_line_width(cr, 1)
 	for i=0, 3 do
 		cairo_rectangle (cr,c2_x+10+6*i,c2_y+50, 4, 7);
 		cairo_stroke(cr)
     end
-    cairo_set_source_rgba(cr, r4, g4, b4, t4)
+    cairo_set_source_rgba(cr, r2, g2, b2, t2)
     fs_used = math.floor(4*tonumber(conky_parse("${fs_used_perc " .. pathway .. "}"))/100)
     for i=0, fs_used do
 		cairo_rectangle (cr,c2_x+10+6*i,c2_y+50, 4, 7);

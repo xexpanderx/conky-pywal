@@ -6,16 +6,32 @@ function hex2rgb(hex)
 end
 
 -- HTML colors
-COLORFIELD
+color0="#33304b"
+color1="#D76C84"
+color2="#4CA293"
+color3="#6AA28E"
+color4="#9EA48A"
+color5="#E2A188"
+color6="#9CCB96"
+color7="#e7dbc0"
+color8="#a19986"
+color9="#D76C84"
+color10="#4CA293"
+color11="#6AA28E"
+color12="#9EA48A"
+color13="#E2A188"
+color14="#9CCB96"
+color15="#e7dbc0"
+color66="#33304b"
 t0= 1
 t0_border= 0.3
 r0, g0, b0 = hex2rgb(color0)
 t1= 1
-r1, g1, b1 = hex2rgb(color1)
+r1, g1, b1 = hex2rgb(color4)
 t2= 1
-r2, g2, b2 = hex2rgb(color2)
-t7= 1
-r7, g7, b7 = hex2rgb(color7)
+r2, g2, b2 = hex2rgb(color7)
+t3= 1
+r3, g3, b3 = hex2rgb(color8)
 
 function fix_text(text)
 	if string.len(text) == 1 then
