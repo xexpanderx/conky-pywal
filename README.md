@@ -1,6 +1,6 @@
 <b>conky-pywal</b>
 
-![alt tag](https://raw.githubusercontent.com/xexpanderx/conky-pywal/master/screenshot.png)
+![alt tag](https://raw.githubusercontent.com/xexpanderx/conky-pywal/master/screenshot.png?token=ACMVF4EBDQVYG3JWNBOBTWK6NLA2W)
 
 <b>Dependencies</b>
 
@@ -11,6 +11,6 @@
 
 <b>Install</b>
 
-Use the provided installer script and follow instructions:
+Use the provided installer script
 
 <code> sh install.sh </code>
