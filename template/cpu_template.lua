@@ -120,13 +120,23 @@ function draw_cpu(cr, w, h)
 	cairo_arc(cr,c3_x,c3_y,20,270*math.pi/180,(270+cpu_used)*math.pi/180)
 	cairo_stroke(cr)
 	
-	--CPU usage text
-	--cairo_set_source_rgba(cr, r7, g7, b7, t7)
-	--ct = cairo_text_extents_t:create()
-	--cairo_text_extents(cr,fix_text(conky_parse("${cpu cpu0}")),ct)
-    --cairo_move_to(cr,c3_x-ct.width/2,c3_y+ct.height/2)
-    --cairo_show_text(cr,fix_text(conky_parse("${cpu cpu0}")))
-    
+	--CPU temp structure
+	cairo_set_line_width(cr, 1)
+	cairo_set_source_rgba(cr, r1, g1, b1, t1)
+	cairo_arc(cr,w/2,h/2+10,5,310*math.pi/180,230*math.pi/180)
+	cairo_rel_line_to(cr,0,-14)
+	cairo_arc(cr,w/2,h/2+10-14-6,3,180*math.pi/180,360*math.pi/180)
+	cairo_close_path(cr)
+	cairo_stroke(cr)
+	
+	--CPU temp
+	cairo_set_source_rgba(cr, r2, g2, b2, t2)
+	cairo_arc(cr,w/2,h/2+10,2,0*math.pi/180,360*math.pi/180)
+	cairo_fill(cr)
+	cairo_move_to(cr,w/2,h/2+10)
+	temp = math.floor(20*tonumber(conky_parse("${execi 5 sensors | grep 'id 0:' | awk '{print $4}' | tr -d '+C°'}"))/100)
+	cairo_rel_line_to(cr,0,-temp)
+	cairo_stroke(cr)
 end
 
 function draw_widgets(cr)
@@ -147,7 +157,7 @@ function conky_start_widgets()
 	if conky_window==nil then return end
 	local cs=cairo_xlib_surface_create(conky_window.display,conky_window.drawable,conky_window.visual, conky_window.width,conky_window.height)
 	local cr=cairo_create(cs)	
-	draw_widgets(cr)
+	local ok, err = pcall(function () draw_widgets(cr) end)
 	cairo_surface_destroy(cs)
 	cairo_destroy(cr)
 end

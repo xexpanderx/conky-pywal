@@ -141,7 +141,7 @@ function conky_start_widgets()
 	if conky_window==nil then return end
 	local cs=cairo_xlib_surface_create(conky_window.display,conky_window.drawable,conky_window.visual, conky_window.width,conky_window.height)
 	local cr=cairo_create(cs)	
-	draw_widgets(cr)
+	local ok, err = pcall(function () draw_widgets(cr) end)
 	cairo_surface_destroy(cs)
 	cairo_destroy(cr)
 end
