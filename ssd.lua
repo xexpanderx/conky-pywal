@@ -102,6 +102,7 @@ function draw_ssd(cr, w, h, pathname, pathway)
 		cairo_rectangle (cr,c2_x+10+6*i,c2_y+50, 4, 7);
 		cairo_stroke(cr)
     end
+    cairo_set_source_rgba(cr, r6, g6, b6, t6)
     fs_used = math.floor(4*tonumber(conky_parse("${fs_used_perc " .. pathway .. "}"))/100)
     for i=0, fs_used do
 		cairo_rectangle (cr,c2_x+10+6*i,c2_y+50, 4, 7);

@@ -10,15 +10,15 @@ COLORFIELD
 t0= 1
 t0_border= 0.3
 r0, g0, b0 = hex2rgb(color0)
-t5= 1
-r5, g5, b5 = hex2rgb(color5)
-t6= 1
-r6, g6, b6 = hex2rgb(color6)
+t2= 1
+r2, g2, b2 = hex2rgb(color2)
+t4= 1
+r4, g4, b4 = hex2rgb(color4)
 t8= 1
 r8, g8, b8 = hex2rgb(color8)
 
-pathname="Home"
-pathway="/home"
+pathname="Root"
+pathway="/"
 
 function fix_text(text)
 	if string.len(text) == 1 then
@@ -49,7 +49,7 @@ function draw_ssd(cr, w, h, pathname, pathway)
 	local c2_y=(h-c1)/2
 	local c3_x=w/2
 	local c3_y=h/2
-	cairo_set_source_rgba(cr, r5, g5, b5, t5)
+	cairo_set_source_rgba(cr, r2, g2, b2, t2)
 	cairo_set_line_width(cr, 2)
 	cairo_arc(cr,c2_x,c2_y-5,10,180*math.pi/180,270*math.pi/180)
 	cairo_rel_line_to(cr,c1,0)
@@ -80,13 +80,13 @@ function draw_ssd(cr, w, h, pathname, pathway)
     cairo_move_to(cr,w/2-ct.width/2,h/2+ct.height/2)
     cairo_show_text(cr,pathname)
     --Pathway indicator
-    cairo_set_source_rgba(cr, r5, g5, b5, t5)
+    cairo_set_source_rgba(cr, r2, g2, b2, t2)
 	cairo_set_line_width(cr, 1)
 	for i=0, 3 do
 		cairo_rectangle (cr,c2_x+10+6*i,c2_y+50, 4, 7);
 		cairo_stroke(cr)
     end
-    cairo_set_source_rgba(cr, r6, g6, b6, t6)
+    cairo_set_source_rgba(cr, r4, g4, b4, t4)
     fs_used = math.floor(4*tonumber(conky_parse("${fs_used_perc " .. pathway .. "}"))/100)
     for i=0, fs_used do
 		cairo_rectangle (cr,c2_x+10+6*i,c2_y+50, 4, 7);
