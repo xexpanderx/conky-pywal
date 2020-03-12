@@ -11,6 +11,6 @@
 
 <b>Install</b>
 
-Use the provided installer script and follow instructions:
+Use the provided installer script
 
 <code> sh install.sh </code>
