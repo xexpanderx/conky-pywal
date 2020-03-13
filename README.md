@@ -13,7 +13,7 @@ It changes colors with pywal!
 
 <b>Dependencies</b>
 
-- moreutils
+- inotify-tools
 - Ubuntu font
 - Conky 1.10.x (compiled with lua and imlib2)
 - pywal
