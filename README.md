@@ -23,3 +23,8 @@ It changes colors with pywal!
 Use the provided installer script
 
 <code> sh install.sh </code>
+
+<b>Start it</b>
+
+
+<code> ~/.conky/conky-pywal/start_conky.sh </code>
