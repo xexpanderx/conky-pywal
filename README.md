@@ -22,7 +22,7 @@ It changes colors with pywal!
 
 Use the provided installer script
 
-<code> sh install.sh </code> #Conky needs to be installed in ~/.conky/conky-pywal/ directory.
+<code> sh install.sh </code> **#Conky needs to be installed in ~/.conky/conky-pywal/ directory.**
 
 <b>Start it</b>
 
