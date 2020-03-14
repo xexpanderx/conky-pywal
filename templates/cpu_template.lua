@@ -134,7 +134,7 @@ function draw_cpu(cr, w, h)
 	cairo_arc(cr,w/2,h/2+10,2,0*math.pi/180,360*math.pi/180)
 	cairo_fill(cr)
 	cairo_move_to(cr,w/2,h/2+10)
-	temp = math.floor(20*tonumber(conky_parse("${execi 5 sensors | grep 'id 0:' | awk '{print $4}' | tr -d '+C°'}"))/100)
+	temp = math.floor(20*tonumber(conky_parse("${execi 5 sensors | grep 'Core [0-9]*' | awk -F+ '{print $2}' | awk -F° '{print $1}' | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }'}"))/100)
 	cairo_rel_line_to(cr,0,-temp)
 	cairo_stroke(cr)
 end
