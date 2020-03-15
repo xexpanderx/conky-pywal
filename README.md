@@ -15,7 +15,7 @@ It changes colors with pywal!
 
 - inotify-tools
 - Ubuntu font
-- Conky 1.10.x (compiled with lua and imlib2)
+- Conky 1.10.x (compiled with lua **5.1.x** and imlib2)
 - pywal
 
 <b>Install</b>
