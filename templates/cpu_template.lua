@@ -62,7 +62,7 @@ function draw_cpu(cr, w, h)
     cairo_stroke(cr)
 	--Top pins
 	cairo_set_line_width(cr, 2)
-	cairo_set_line_cap (cr, CAIRO_LINE_CAP_ROUND);
+	cairo_set_line_join (cr, CAIRO_LINE_JOIN_MITER);
 	cairo_move_to(cr,c2_x+5,c2_y-5)
 	cairo_rel_line_to(cr,0,-5)
 	cairo_close_path(cr)
