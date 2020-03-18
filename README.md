@@ -3,11 +3,13 @@
 ![alt tag](https://raw.githubusercontent.com/xexpanderx/conky-pywal/master/screenshot.png)
 
 A conky showing:
+- Clock and date
 - Diskspace
 - RAM Usage
 - CPU Usage
 - CPU Temperature
 - GPU Hz
+- Battery
 
 It changes colors with pywal!
 
