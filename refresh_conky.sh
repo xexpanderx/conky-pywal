@@ -1,5 +1,5 @@
 #!/bin/sh
-colors=`cat $HOME/.cache/wal/colors.Xresources | grep "*color" | tr -d "*:" | sed 's/ //g' | sed 's/#/="#/g' | sed ':a;N;$!ba;s/\n/"\n/g'`
+colors=`cat $HOME/.cache/wal/colors.Xresources | grep "^*color" | tr -d "*:" | sed 's/ //g' | sed 's/#/="#/g' | sed ':a;N;$!ba;s/\n/"\n/g'`
 colors="${colors}\""
 cat ~/.conky/conky-pywal/templates/ram_template.lua | awk -v srch="COLORFIELD" -v repl="$colors" '{ sub(srch,repl,$0); print $0 }' > ~/.conky/conky-pywal/lua/ram.lua
 cat ~/.conky/conky-pywal/templates/cpu_template.lua | awk -v srch="COLORFIELD" -v repl="$colors" '{ sub(srch,repl,$0); print $0 }' > ~/.conky/conky-pywal/lua/cpu.lua
